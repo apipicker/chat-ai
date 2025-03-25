@@ -1,0 +1,18 @@
+{
+  "name": "chat-ai",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "node build.js",
+    "watch": "chokidar 'src/*' -c 'npm run build'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chokidar-cli": "^3.0.0",
+    "clean-css": "^5.3.3",
+    "uglify-js": "^3.19.3"
+  }
+}
