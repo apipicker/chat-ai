@@ -15,7 +15,7 @@ class ApiPickerChatAi {
     this.config = config;
     this.isOpen = false;
     this.user = null;
-    this.apiUrl='http://127.0.0.1:7007';
+    this.apiUrl=config?.apiUrl || 'http://130.195.222.180:7007';
   }
   log(...str) {
     if (this.config?.debug) {
