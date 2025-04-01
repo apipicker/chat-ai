@@ -15,7 +15,7 @@ class ApiPickerChatAi {
     this.config = config;
     this.isOpen = false;
     this.user = null;
-    this.apiUrl=config?.apiUrl || 'http://130.195.222.180:7007';
+    this.apiUrl=config?.apiUrl || 'https://api.apipicker.com';
   }
   log(...str) {
     if (this.config?.debug) {
@@ -61,7 +61,6 @@ class ApiPickerChatAi {
 </div>
       `;
     document.body.appendChild(this.container);
-    // اضافه کردن event listeners بعد از رندر
   this.addEventListeners();
   }
 
@@ -87,25 +86,25 @@ class ApiPickerChatAi {
     return `${formattedHours}:${minutes} ${period}`;
   }
   async checkAuth() {
-    // بررسی وضعیت احراز هویت
+    //next version
   }
   addEventListeners() {
-    // دکمه toggle
+  
     this.container.querySelector('.chat-toggle').addEventListener('click', () => {
       this.container.classList.toggle('open');
     });
   
-    // دکمه close
+  
     this.container.querySelector('.chat-close-btn').addEventListener('click', () => {
       this.container.classList.toggle('open');
     });
   
-    // دکمه ارسال پیام
+   
     this.container.querySelector('.chat-send-btn').addEventListener('click', 
       this.sendMessage.bind(this)
     );
   
-    // فیلد ورودی پیام (برای ارسال با Enter)
+    
     this.container.querySelector('#chat-input').addEventListener('keypress', (e) => {
       if (e.key === 'Enter') {
         this.sendMessage();
@@ -119,17 +118,17 @@ class ApiPickerChatAi {
     if (!message) return; 
     this.showTypingIndicator();
     try {
-      // نمایش پیام کاربر
+      
       this.renderMessage({
         text: message,
         isUser: true,
         timestamp: new Date()
       });
   
-      // پاک کردن فیلد ورودی
+      
       input.value = '';
   
-      // ارسال به سرور
+     
       const response = await fetch(`${this.apiUrl}/openai/message`, {
         method: 'POST',
         headers: {
@@ -142,7 +141,7 @@ class ApiPickerChatAi {
   
       const data = await response.json();
       this.log('data',data)
-      // نمایش پاسخ
+     
       this.renderMessage({
         text: data.data,
         isUser: false,
@@ -151,7 +150,7 @@ class ApiPickerChatAi {
   
     } catch (error) {
       console.error('Error sending message:', error);
-      // نمایش خطا به کاربر
+     
     }
     this.hideTypingIndicator();
   }
@@ -183,7 +182,7 @@ class ApiPickerChatAi {
   
     messagesContainer.appendChild(messageDiv);
     
-    // اسکرول به آخرین پیام
+    
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
   }
  
